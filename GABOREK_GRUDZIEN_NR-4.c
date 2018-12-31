@@ -35,44 +35,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /*************************************************************************************************
  Funkcja dla zadania nr 4.1 (punkt 4.1 - grudzien), poniżej zdefiniowałem pierwsza funkcje do ktorej pozniej
  sie odwolam poprzez STOS w funkcji main.
  *************************************************************************************************/
 
-int printBackwards(int *a, int s)
+int *podajLiczby(int rozmiarTablicy)
 {
-    int j;
-    for(j=0; j<s; j++)
+    int i;
+    int *tablica1;
+    tablica1=(int*) malloc(rozmiarTablicy*sizeof(int));
+    for (i=0 ; i<rozmiarTablicy ; i++)
     {
-        printf("Element nr %d", s-j);
-        printf("\twynosi %d\t", a[s-j-1]);
+        printf("Podaj %d element tablicy:\t", i+1);
+        scanf("%d", tablica1++);
     }
-    return *a;
+    tablica1=tablica1-rozmiarTablicy;
+    return tablica1;
+}
+
+
+int printBackwards(int s, int *twojaTablica)
+{
+    int p;
+    for (p=0 ; p<s ; p++)
+        printf("\nElement nr: %i tablicy wynosi:\t %d", s-p, twojaTablica[s-p-1]);
+    return *twojaTablica;
 }
 
 /*************************************************************************************************
  Funkcja dla zadania nr 4.2 (punkt 4.2 - grudzien), poniżej zdefiniowałem druga funkcje do ktorej pozniej
  sie odwolam poprzez STOS w funkcji main.
  *************************************************************************************************/
-
+/*
 int funkcja42 (int )
 {
     
     return pustalinia;
 }
-
+*/
 /*************************************************************************************************
  Funkcja dla zadania nr 4.3 (punkt 4.3 - grudzien), poniżej zdefiniowałem druga funkcje do ktorej pozniej
  sie odwolam poprzez STOS w funkcji main.
  *************************************************************************************************/
-
+/*
 int funkcja43 (int )
 {
     
     return pustalinia;
 }3
-
+*/
 
 
 /*************************************************************************************************
@@ -83,18 +96,23 @@ int main(void)
 {
     
     // ponizej ogreslilem wszystkie zmienne globalne a takze na dalem im typ zmiennej
-    int aaa;
-    int aab;
-    int aac;
-    int baa;
-    int bab;
-    int bac;
-    int caa;
-    int cab;
-    int cac;
+
+    int wybor;                      //zmienne dla wyboru programu - menu uzytkownika petle
+    char kont;                      //zmienne dla wyboru programu - menu uzytkownika petle
+    int wyjscie=0;                  //zmienne dla wyboru programu - menu uzytkownika petle
+    int e;                          //zmienna dla podprogramu nr 4.1
+    int w;                          //zmienna dla podprogramu nr 4.1
+    int odwrotna;                   //zmienna dla podprogramu nr 4.1
+    int x;                           //zmienna dla podprogramu nr 4.1
+    int rozmiar2;
+    int *tablica6;
+    int *twojaTablica;
+    int i;
+    int n=5;
+    int mm;
     
-    
-    while(wyjscie == 0) {
+    while(wyjscie == 0)
+    {
         printf ("\nMasz teraz mozliwosc wyboru ktora czesc programu chcesz uruchomic\n");
         printf ("Mozesz wybrac podprogram nr 4.1, 4.2, 4.3 badz 4.4\n");
         printf ("Aby uruchomic program nr: \n");
@@ -108,46 +126,59 @@ int main(void)
         {
             case 1:
                 // rozpoczynam program nr 4.1 grudzien
-                puts ("Super wlasnie wybrales podprogram nr 2.2\n");
-                puts ("Program wyswietli wastosci poszczegolnych elemwntow tablicy w kolejnosci odwrotnej\n");
-                puts ("Jednak najpierw musisz podac wartosci dla poszczegolnych elementow tablicy\n");
-                puts ("Podaj pięć kolejnych liczb: \n");
+                puts ("Super wlasnie wybrales podprogram nr 4.1\n");
+                puts ("Program program zaalokuje pamiec na ''n'' elementow pobranych od Ciebie");
+                puts ("a nastepnie wypisze tablice w odwrotnej kolejnosci metoda ''printBackwards''");
+                puts ("Podaj rozmiar tablicy: \n");
                 
-                printf ("Element nr 1:\t");
-                scanf ("%i\n", &tablica1[0]);
+                scanf ("%i", &mm);
+                printf ("\nTwoja tablica ma \t %i \t elementow\n", mm);
+
+                twojaTablica=podajLiczby(mm);
+                puts ("\nPonizej zostanie wyswietlona tablica elementow o podanych przez Ciebie wartosciach:");
+                for (w=0 ; w<mm ; w++)
+                    printf("\nElement nr: %i tablicy wynosi:\t %d", w+1, *twojaTablica++);
+                twojaTablica-=mm;
+                puts ("\nPonizej zostanie wyswietlona Twoja tablica w odwrotnej kolejnosci:\n");
+                odwrotna=printBackwards(mm, twojaTablica);
                 
-                printf ("Element nr 2:\t");
-                scanf ("%i\n", &tablica1[1]);
+                free(twojaTablica);
+                getchar();
                 
-                printf ("Element nr 3:\t");
-                scanf ("%i\n", &tablica1[2]);
                 
-                printf ("Element nr 4:\t");
-                scanf ("%i\n", &tablica1[3]);
+                printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 4.%i\n", wybor);
                 
-                printf ("Element nr 5:\t");
-                scanf ("%i\n", &tablica1[4]);
-                puts ("Oto Twoja tablica pieciu elementow: \n");
-                for ( int i =0; i <= 4; i++)
-                    printf ("Element %i : %d\t", i+1, tablica1[i]);
-                puts ("\nPowyzej wyswietlono wprowadzona tablice liczb w kolejnosci od pierwszego elementu do ostatniego\n");
-                
-                puts ("\nPonizej wyswietlona zostanie tablica w odwrotnej kolejnosci:\n");
-                odwrotna = printBackwards(tablica1, 5);
-                printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 2.%i\n", wybor);
                 break;
-                break;
+                
             case 2:
                 // rozpoczynam program nr 4.2 grudzien
+                /*puts ("Super wlasnie wybrales podprogram nr 4.1\n");
+                puts ("Program program zaalokuje pamiec na ''n'' elementow pobranych od Ciebie");
+                puts ("a nastepnie wypisze tablice w odwrotnej kolejnosci metoda ''printBackwards''");
+                puts ("Podaj rozmiar tablicy: \n");
+                scanf ("i%", mm);
                 
+                
+                
+                
+                twojaTablica=wczyt_tab(mm);
+                puts ("Ponizej zostanie wyswietlona tablica elementow o podanych przez Ciebie wartosciach:\n");
+                for (w=0 ; w<mm ; w++)
+                    printf("\n Element[%d]=%d", w, *twojaTablica++);
+                twojaTablica-=5;
+                
+                odwrotna=printBackwards(pa);
+                
+                free(twojaTablica);
+                getchar();*/
                 break;
             case 3:
                 // rozpoczynam program nr 4.3 grudzien
-                
+                puts ("\nPowyzej wyswietlono wprowadzona tablice liczb w kolejnosci od pierwszego elementu do ostatniego\n");
                 break;
             case 4:
                 // rozpoczynam program nr 4.4 grudzien
-                
+                puts ("\nPowyzej wyswietlono wprowadzona tablice liczb w kolejnosci od pierwszego elementu do ostatniego\n");
                 break;
             default:
                 printf ("Podales bledna liczbe\n");
@@ -155,6 +186,7 @@ int main(void)
                 break;
                 // teraz przechodze do mozliwosci wyboru czy chce ponownie uruchomic ktoras czesc programu (podprogramy)
                 // czy zakonczyc calkiem dzialanie programu
+        
         }
         printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 4.%i\n", wybor);
         while(1)
