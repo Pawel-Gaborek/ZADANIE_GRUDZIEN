@@ -83,6 +83,8 @@ int *podajLiczby2(int rozmiarTablicy)
     int k=0;
     int j;
     int z=0;
+    int ll=0;
+    int ff=0;
     tablica1=(int*) malloc(rozmiarTablicy*sizeof(int));
     for (i=0 ; i<rozmiarTablicy ; i++)
     {
@@ -109,19 +111,28 @@ int *podajLiczby2(int rozmiarTablicy)
     printf ("W twojej tablicy znajduje sie \t %i \t elementow o wartosci ujemnej", elementyUjemne);
     //funkcja alokuje pamiec dla nowej tablicy o rozmiarze "elementyUjemne"
     tablica2=(int*) malloc(elementyUjemne*sizeof(int));
-
+    tablica3=(int*) malloc(elementyDodatnie*sizeof(int));
     for(u=0; u<rozmiarTablicy; u++)
     {
-        if (*tablica1++<0)
-            *tablica2 = *tablica1++;
+        if (tablica1[u]<0)
+        {
+            tablica2[ll] = tablica1[u];
+            ll = ll + 1;
+        }
+        else
+        {
+            tablica3[ff] = tablica1[u];
+            ff = ff + 1;
+        }
     }
     
     puts ("\nTeraz wyswietli tablice nr 2 w ktorej sa zawarte elementy tablicy nr o wartosciach ujemnych\n");
     for (k=0 ; k<elementyUjemne ; k++)
         printf("\nElement nr: %i tablicy wynosi:\t %d", k+1, tablica2[k]);
-    tablica2-=elementyUjemne;
+    
     free (tablica1);
     free (tablica2);
+    free (tablica3);
     return 0;
 }
 
