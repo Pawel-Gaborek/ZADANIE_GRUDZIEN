@@ -62,7 +62,7 @@ int printBackwards(int s, int *twojaTablica)
     int p;
     for (p=0 ; p<s ; p++)
         printf("\nElement nr: %i tablicy wynosi:\t %d", s-p, twojaTablica[s-p-1]);
-    return *twojaTablica;
+    return twojaTablica;
 }
 
 /*************************************************************************************************
@@ -145,107 +145,66 @@ int *podajLiczby2(int rozmiarTablicy)
 
 typedef enum {TRUE = 1, FALSE = 0} bool;
 
-
-//ponizej tworze funkcje zliczajaca ilosc znakow w lancuchu. Liczba powtorzen petli do napotkania znaku "\0" jest
-//liczba znakow w lancuchu.
-int getLengh(char *str, int s)
+int *podajLiczby5(int rozmiarTablicy2)
 {
-    int j;
-    int w;
-    w=0;
-    for(j=0; str[j]!='\0' ; j++)
-    {
-        w=j+1;
-    }
-    return w;
-}
-
-int boolAreArraysldentical(int *a1, int s1, int *a2, int s2)
-{
-    bool porownanie;
-    bool w;
     int i;
-    puts("\nTeraz funkcja porowna twoje wyrazy\n");
-    
-    if ( s1 = s2 )
+    int *tablica1a;
+    tablica1a=(int*) malloc(rozmiarTablicy2*sizeof(int));
+    for (i=0 ; i<rozmiarTablicy2 ; i++)
     {
-        puts ("Super! Wprowadzone przez ciebie wyrazy maja taka sama liczbe znakow");
-        puts ("Teraz program sprawdzi czy poszczegolne znaki sa takie same");
-        {
-            while(a1[i] == a2[i])
-                if(a1[i++] == '\0')
-                    return 0;
-            return(a1[i] - a2[i]);
-        }
-    
-        if ((a1[i] - a2[i])==0)
-            puts ("Gratulacje! Wszystkie znaki sa takie same na poszczegolnych elementach");
-        else
-            puts ("Przykro mi, jednak poszczegolne znaki sie roznia");
+        printf("Podaj %d element tablicy:\t", i+1);
+        scanf("%d", tablica1a++);
     }
+    tablica1a=tablica1a-rozmiarTablicy2;
+    return tablica1a;
+}
+
+int *podajLiczby6(int rozmiarTablicy3)
+{
+    int i;
+    int *tablica2a;
+    tablica2a=(int*) malloc(rozmiarTablicy3*sizeof(int));
+    for (i=0 ; i<rozmiarTablicy3 ; i++)
+    {
+        printf("Podaj %d element tablicy:\t", i+1);
+        scanf("%d", tablica2a++);
+    }
+    tablica2a=tablica2a-rozmiarTablicy3;
+    return tablica2a;
+}
+
+
+
+int AreArraysldentical(int s1, int *a1, int s2, int *a2)
+{
+    
+    
+    int p;
+    int w;
+    int u=0;
+    int liczba=0;
+    int zz;
+    int w4;
+    
+    puts ("Twoja tablica nr 1 ma nastepujace elementy:");
+    for (p=0 ; p<s1 ; p++)
+        printf("\nElement nr: %i tablicy wynosi:\t %d", p+1, a1[p]);
+    puts ("\n \nTwoja tablica nr 2 ma nastepujace elementy:");
+    for (w=0 ; w<s2 ; w++)
+        printf("\nElement nr: %i tablicy wynosi:\t %d", w+1, a2[w]);
+
+    while ((a1[u] - a2[u])==0)
+        u++;
+    printf ("\n\nLiczba wspolnych elementow na tych samych indeksach obu tablic wynosi:\t %i \n", u);
+    
+    zz = (s1 + s2) - 2*u;
+    
+    if (zz == 0)
+        w4 = 1;
     else
-        puts ("Przykro mi, jednak wprowadzone przez Ciebie wyrazy sie roznia");
-    return 0;
+        w4 = 0;
+    return w4;
 }
-
-char *znaki(char *ciag1)
-{
-    char w;
-    int j=0;
-    
-    do {w=getchar() ; ciag1[j]=w ; j++;}
-        while(w!='\n');
-    ciag1[j-1]='\0';
-    return ciag1;
-}
-
-//ponizej jest funkcja wprowadzania lancucha znakow
-int wyrazy(int m)
-{
-    int iloscznakow1;
-    int iloscznakow2;
-    int porownanieWyrazow;
-    int i=0;
-    int j=0;
-    char w;
-    char ciag1[100];
-    char ciag2[100];
-    
-    puts("Teraz rozpocznij wprowadzanie znakow dla pierwszego wyrazu:\n");
-    
-    do {w=getchar() ; ciag1[j]=w ; j++;}
-        while(w!='\n');
-    ciag1[j-1]='\0';
-  
-    
-    
-    puts("\nPonizej zostanie wyswietlony twoj pierwszy wyraz:\n");
-    printf ("%s\n", ciag1);
-    puts("\nSuper! Wlasnie wyswietlono pierwszy wyraz\n");
-    printf ("Teraz funkcja przeliczy ilosc znakow dla pierwszego wyrazu");
-    iloscznakow1 = getLengh(ciag1, m);
-    printf("Twoj pierwszy wyraz sklada sie z %d znakow\n", iloscznakow1);
-    
-    puts("Teraz rozpocznij wprowadzanie znakow dla drugiego wyrazu:\n");
-    do {w=getchar() ; ciag2[i]=w ; i++;}
-        while(w!='\n');
-    ciag2[i-1]='\0';
-    puts("\nPonizej zostanie wyswietlony twoj drugi wyraz:\n");
-    printf ("%s\n", ciag2);
-    puts("\nSuper! Wlasnie wyswietlono drugi wyraz\n");
-    printf("Teraz funkcja przeliczy ilosc znakow dla drugiego wyrazu");
-    iloscznakow2 = getLengh(ciag2, m);
-    printf("Twoj pierwszy wyraz sklada sie z %d znakow\n", iloscznakow2);
-    
-    puts("Teraz program za pomoca funkcji ''boolAreArraysldentical'' porowna oba wyrazy\n");
-
-    
-    porownanieWyrazow = boolAreArraysldentical(ciag1, iloscznakow1, ciag2, iloscznakow2);
-    
-    return 0;
-}
-
-
 
 
 /*************************************************************************************************
@@ -257,27 +216,25 @@ int wyrazy(int m)
 char *reverseString(char *s)
 {
     char *str2;
-    //char tablica[MAX];
-    //zmienna zliczaj¹ca litery
-    char result;
     int w=0;
-    //zliczam litery
+    int j=0;
+    int k=0;
     while(s[w]!='\0')
         w = w+1;
  
     w-=1;
     str2 = (char*)malloc((w + 1) * sizeof(char));
-    int j=0, k=0;
+    
     for(j=w; j>=0; j--)
     {
         str2[k]=s[j];
         ++k;
     }
-    printf("%s\n", str2);
+    printf("\nTeraz zostanie wyswietlony string w funkcji pomocniczej:\t %s\n", str2);
+    s=str2;
     str2[k-1]='\0';
-    return *str2;
+    return str2;
 }
-
 
 
 
@@ -303,26 +260,25 @@ int main(void)
     int *twojaTablica;
 
     int mm;
+    int hh;
+    int ee;
+    int ff;
+    int j=0;
  
     int twojaTablica2;
+    int tablica1a;
+    int tablica2a;
+    int *tablica1b;
+    int *tablica2b;
 
-    int mk;
+
     
     int porownanie;
+    bool porownanie2;
     int rozmiar4;
-    char odwrocony;
     char result;
-    //char str[rozmiar4];
-    char str;
-    
+    bool porownanieWyrazow;
 
-    int l=0;
-    char z;
-    int y;
-    int jj=0;
-    char xx;
-    int ii;
-    char *str3;
     
     while(wyjscie == 0)
     {
@@ -379,8 +335,26 @@ int main(void)
                 puts ("Program program sprawdzi czy podane lancuchy znakow maja taka sama dlugosc");
                 puts ("Jezeli lancuchy sie roznia to program zakonczy zadanie");
                 puts ("natomiast jezeli maja taka sama to sprawdzi czy poszczegolne znaki sa takie sa");
+                
+                puts ("Podaj rozmiar pierwszej tablicy: \n");
+                scanf ("%i", &mm);
+                printf ("\nTwoja pierwsza tablica ma \t %i \t elementow\n", mm);
+                tablica1b=podajLiczby5(mm);
 
-                porownanie = wyrazy(100);
+                puts ("Podaj rozmiar drugiej tablicy: \n");
+                scanf ("%i", &hh);
+                printf ("\nTwoja tablica ma \t %i \t elementow\n", hh);
+                tablica2b=podajLiczby6(hh);
+                
+                puts("\nTeraz program za pomoca funkcji ''boolAreArraysldentical'' porowna oba wyrazy\n");
+                porownanieWyrazow = AreArraysldentical(mm, tablica1b, hh, tablica2b);
+      
+                porownanie = porownanieWyrazow == 0 ? FALSE : TRUE;
+                if ( porownanie == TRUE )
+                    puts ("\nSuper! Obydwie tablice tablice liczbowe sa takie same\n");
+                else
+                    puts("\nNiestety tablice sie roznia. Moga miec taka sama liczbe elementow, jednak moga miec elementy inne");
+                
                 printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 4.%i\n", wybor);
                 break;
             case 4:
@@ -399,8 +373,9 @@ int main(void)
                 printf("\nWprowadzony wyraz ktory bedzie odwrocony to:\t %s \n", str);
                 
                 result = reverseString(str);
-                puts ("Ponizej zostanie wyswietlony odwrocony napis ktory wprowadziles:\n");
-                printf("%s", result);
+                
+                puts ("\nTeraz zostanie wyswietlony string w funkcji glownej po przekazaniu");
+                printf("Napis odwrocony to:\t %s", result);
                 
                 free (str);
                 free (result);
@@ -415,7 +390,6 @@ int main(void)
                 // czy zakonczyc calkiem dzialanie programu
         
         }
-        printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 4.%i\n", wybor);
         while(1)
         {
             printf("\nCzy chcesz ponownie uruchomic program\n");
