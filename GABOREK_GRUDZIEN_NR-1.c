@@ -92,15 +92,13 @@ int main(void)
     
     // ponizej ogreslilem wszystkie zmienne globalne a takze na dalem im typ zmiennej
    
-    int wybor;
-    int wyjscie=0;
-    int wyjsc=4;
-    char kont;
-    char kontynuuj;
-    
-    int tablica1[5];
-    int i;
-    int maksimum;
+    int wybor;                          //zmienna dla menu uzytkownika (petle)
+    int wyjscie=0;                      //zmienna dla menu uzytkownika (petle)
+    char kont;                          //zmienna dla menu uzytkownika (petle)
+
+    int tablica1[5];                    //zmienna dla zad 1.1, 1.2, 1.3
+    int i;                              //zmienna dla zad 1.1, 1.2, 1.3 petla powtorzen
+    int maksimum;                       //zmienna dla zad 1.1
     
     
     while(wyjscie == 0)
@@ -131,11 +129,17 @@ int main(void)
                 scanf ("%i\n", &tablica1[3]);
                 printf ("Element nr 5:\t");
                 scanf ("%i\n", &tablica1[4]);
+                //powyzej wprowadzilem tablice liczb. Bez funkcji malloc poniewaz w zadaniu zostala z gory okreslona liczba. Nie wprowadzalem liczby za pomoca petli ponizej opcja z uzyciem petli:
+                //for (1=0 ; i<5 ; I++)
+                //      printf ("Element nr %i:\t", i+1);
+                //      scanf ("%i\n", &tablica1[i]);
                 
                 puts ("\nGratulacje wprowadziles piec liczb do tablicy");
                 puts ("Teraz zostanie wyswietlona liczba po najwiekszej wartosci w tablicy");
+                //ponizej algorytm porownuje pokolei aktualnie maks liczbe z kolejnym elementem tablicy
+                //w razie niespelnienia warunku przyjmuje nowa wartosc maks
                 maksimum=tablica1[0];
-                for (i=0; i<=4; i++)
+                for (i=0; i<5; i++)
                 {
                     if (maksimum < tablica1[i])
                     {
@@ -165,7 +169,7 @@ int main(void)
                     
                     printf ("Element nr 5:\t");
                     scanf ("%i\n", &tablica1[4]);
-                    
+                    //za pomoca petli program wyswietla po kolei tablice w dwoch kolejnosciach
                     puts ("\nPonizej wyswietlono wprowadzona tablice liczb w kolejnosci od elementu pierwszego do piatego\n");
                     for ( int i =0; i <= 4; i++)
                         printf ("Element %i : %d\t", i+1, tablica1[i]);
@@ -200,7 +204,7 @@ int main(void)
                 for ( int i =0; i <= 4; i++)
                     printf ("Element %i : %d\t", i+1, tablica1[i]);
                 puts ("\nPowyzej wyswietlono wprowadzona tablice liczb w kolejnosci od pierwszego elementu do ostatniego\n");
-             
+                //ponizej za pomoca petli sprawdzam czy kazdy po kolei element jeste wiekszy od poprzedniego
                 puts ("\nTeraz program nr 1.3 sprawdzi czy tablica jest posortowana niemalejaco (rosnaco)\n");
                 for (i=0; i<=4; i++)
                 {
