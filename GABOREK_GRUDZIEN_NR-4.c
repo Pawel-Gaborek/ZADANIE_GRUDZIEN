@@ -389,6 +389,8 @@ int main(void)
                 // teraz przechodze do mozliwosci wyboru czy chce ponownie uruchomic ktoras czesc programu (podprogramy)
                 // czy zakonczyc calkiem dzialanie programu
         
+                
+                
         }
         while(1)
         {
@@ -415,3 +417,4 @@ int main(void)
         printf ("\nMoze nastepnym razem. Powodzenia !!!\n");
     }
 }
+
