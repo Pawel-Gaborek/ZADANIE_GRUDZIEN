@@ -99,7 +99,7 @@ int wyraz(int m)
  sie odwolam poprzez STOS w funkcji main.
  *************************************************************************************************/
 
-int voidReverse(char *str2, int oz)
+void Reverse(char *str2, int oz)
 {
     int j;
     int w;
@@ -109,7 +109,6 @@ int voidReverse(char *str2, int oz)
         printf("%c", str2[(oz-1) - j]);
     }
     printf("\n");
-    return w;
 }
 
 /*************************************************************************************************
@@ -120,6 +119,32 @@ int voidReverse(char *str2, int oz)
 //ponizej definiuje wlasna definicje typu enum dla prawdy i falszu (bool przy uzyciu cyfr 0 badz 1)
 
 typedef enum {TRUE = 1, FALSE = 0} bool;
+
+
+bool containsDigits(char *str)
+{
+   
+    int j=0;
+    int w4=0;
+    int w5=0;
+    bool w6;
+    bool dig;
+    while (str[j] != '\0')
+        {
+            if (isdigit(str[j]))
+                w4=w4+1;
+            else
+                w5=w5+1;
+            j++;
+        }
+    if (w4==0)
+        w6=1;
+    else
+        w6=0;
+    return w6;
+}
+
+
 
 /*************************************************************************************************
  Funkcja dla zadania nr 3.4 (punkt 3.4 - grudzien), poniżej zdefiniowałem druga funkcje do ktorej pozniej
@@ -142,8 +167,13 @@ int main(void)
     char odwrotnaKolejnosc;
     int x;
     bool dig;
-
-    
+    int j=0;
+    char m;
+    char ciag2['m'];
+    bool wynik5;
+    int w4;
+    int w5;
+    int ll;
     // rozpoczynam program nr 3.1 grudzien
     puts ("Super wlasnie wybrales podprogram nr 3.1\n");
     puts("Wprowadz napis celem przeliczenia ilosci znakow");
@@ -158,16 +188,14 @@ int main(void)
     puts("Pamietaj by po wprowadzeniu nazwy miejsca potwierdzic klawiszem ''ENTER''");
     puts("Pamietaj takze ze maksymalna ilosc znakow moze wyniesc sto");
     puts("Teraz rozpocznij wprowadzanie znakow:\n");
-    int j=0;
-    char m;
-    char ciag2['m'];
+   
     do {m=getchar() ; ciag2[j]=m ; j++;}
         while(m!='\n');
     ciag2[j-1]='\0';
     puts("\nPonizej zostanie wyswietlona nazwa twojego ulubionego miejsca wakacji :) \n");
     printf ("%s\n", ciag2);
     puts("\nA teraz ta sama nazwa zostanie wyswietlona w kolejnosci odwrotnej\n");
-    odwrotnaKolejnosc = voidReverse(ciag2, j);
+    Reverse(ciag2, j);
     puts("\nSuper! Wlasnie wyswietlono nazwe ulubionego miejsca wakacji w odwrotnej kolejnosci\n");
     printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 3.2\n");
 
@@ -178,26 +206,28 @@ int main(void)
     int w=0;
     char h;
     char ciag3['w'];
+
     do {h=getchar() ; ciag3[w]=h ; w++;}
         while(h!='\n');
     ciag3[w-1]='\0';
     puts("\nPonizej zostanie wyswietlony ciag znakow wprowadzonych przez Ciebie :) \n");
     printf ("%s\n", ciag3);
+
     puts("Teraz program sprawdzi czy w podanym przez Ciebie wyrazie wystepuja cyfry\n");
-    for(x=0 ; x<w ; x++)
-    {
-        dig = isdigit(ciag3[x]) == 0 ? FALSE : TRUE;
-        if ( dig == TRUE )
-            printf("\nW podanym przez Ciebie ciagu znakow niestety zostala podana cyfra\n");
+    
+    wynik5 = containsDigits(ciag3);
+    wynik5 == 1 ? FALSE : TRUE;
+        if ( wynik5 == TRUE )
+            printf("\nW podanym przez Ciebie ciagu wystepuja tylko litery\n");
         else
-            printf("");
-    }
-    printf("\nJezeli powyzej nie widzisz komunikatu o cyfrze w ciagu znakow oznaczo to w lancuchu sa same litery :)\n");
-    printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 3.3\n");
+            printf("\nW podanym przez Ciebie ciagu znakow niestety zostala podana cyfra\n");
+
+    puts ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 3.3\n");
     
     // rozpoczynam program nr 3.4 grudzien
-    puts("\nSuper wlasnie wybrales podprogram nr 3.4\n");
-    puts("Pobranie lancucha znakow od uzytkownika uwzglednilem juz wczesniej");
+    puts ("\nSuper wlasnie wybrales podprogram nr 3.4\n");
+    puts ("Pobranie lancucha znakow od uzytkownika uwzglednilem juz wczesniej");
     puts("Przy ponownym uruchomieniu programu mozna jeszcze raz do kazdego zadania wprowadzic lancuchy znakow");
     printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 3.4\n");
 }
+
