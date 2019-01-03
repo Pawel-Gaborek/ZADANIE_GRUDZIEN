@@ -47,22 +47,39 @@
  sie odwolam poprzez STOS w funkcji main.
  *************************************************************************************************/
 
+//ponizej definkiuje wlasny typ wedlug definicji enum
+
 typedef enum {TRUE = 1, FALSE = 0} bool;
+
+
+bool isSorted(int *tab, int ww)
+{
+    int j=0;
+    bool w4;
+    while (tab[j]<tab[j+1])
+        j++;
+    
+    if (j==ww)
+        w4=1;
+    else
+        w4=0;
+    return w4;
+}
+
 
 /*************************************************************************************************
  Funkcja dla zadania nr 2.2 (punkt 2.2 - grudzien), poniżej zdefiniowałem druga funkcje do ktorej pozniej
  sie odwolam poprzez STOS w funkcji main.
  *************************************************************************************************/
 
-int printBackwards(int *a, int s)
+void printBackwards(int *a, int s)
 {
     int j;
     for(j=0; j<s; j++)
     {
-        printf("Element nr %d", s-j);
-        printf("\twynosi %d\t", a[s-j-1]);
+        printf("Element nr: %d", s-j);
+        printf("\t wynosi: %d\n", a[s-j-1]);
     }
-    return *a;
 }
 
 /*************************************************************************************************
@@ -118,10 +135,12 @@ int main(void)
 
     // ponizej ogreslilem wszystkie zmienne globalne a takze na dalem im typ zmiennej
   
-    int wybor;
-    char kont;
+    int wybor;                                  //zmienna dla menu uzytkownika
+    char kont;                                  //zmienna dla menu uzytkownika
+    int wyjscie=0;                              //zmienna dla menu uzytkownika
+    
     int tablica1[5];
-    int wyjscie=0;
+    bool wynik;
     int odwrotna;
     int kropki;
     int suma;
@@ -171,17 +190,14 @@ int main(void)
                 for ( int i =0; i <= 4; i++)
                     printf ("Element %i : %d\t", i+1, tablica1[i]);
                 puts ("\nPowyzej wyswietlono wprowadzona tablice liczb w kolejnosci od pierwszego elementu do ostatniego\n");
-                puts("Teraz program sprawdzi czy w podanym przez Ciebie wyrazie wystepuja cyfry\n");
-                for(x=0 ; x<=4 ; x++)
-                {
-                    porownanie = (tablica1[x] <tablica1[x+1]) == 0 ? FALSE : TRUE;
-                    if ( porownanie == TRUE )
-                        printf("OK");
+                
+                wynik = isSorted(tablica1, 5);
+                wynik == 1 ? FALSE : TRUE;
+                    if ( wynik == TRUE )
+                        puts ("Twoja tablica jest posortowana niemalejaco");
                     else
-                        printf("Niestety twoja tablica co najmniej w jednym miejscu jest nieposortowana\n");
-                }
-                printf("Jezeli powyzej nie widzisz komunikatu o nieposortowaniu to GRATULACJE ! :) ");
-                printf("Twoja tablica jest posortowana niemalejaco");
+                        puts ("Niestety twoja tablica co najmniej w jednym miejscu jest nieposortowana\n");
+    
                 printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 2.%i\n", wybor);
                 break;
             case 2:
@@ -207,11 +223,11 @@ int main(void)
                 scanf ("%i\n", &tablica1[4]);
                 puts ("Oto Twoja tablica pieciu elementow: \n");
                 for ( int i =0; i <= 4; i++)
-                    printf ("Element %i : %d\t", i+1, tablica1[i]);
+                    printf ("Element %i :\t %d\n", i+1, tablica1[i]);
                 puts ("\nPowyzej wyswietlono wprowadzona tablice liczb w kolejnosci od pierwszego elementu do ostatniego\n");
                 
                 puts ("\nPonizej wyswietlona zostanie tablica w odwrotnej kolejnosci:\n");
-                odwrotna = printBackwards(tablica1, 5);
+                printBackwards(tablica1, 5);
                 printf ("\nGratulacje !!! Wlasnie zakonczyles dzialanie wybranego przez siebie programu nr 2.%i\n", wybor);
                 break;
             case 3:
